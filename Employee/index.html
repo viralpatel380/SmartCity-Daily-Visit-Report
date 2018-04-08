@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="login/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login/css/util.css">
+    <link rel="stylesheet" type="text/css" href="login/css/main.css">
+    <!--===============================================================================================-->
+
+    <style>
+        #doLogin {
+            width: 100wh;
+            color: #fff;
+            background: linear-gradient(95deg, #c33764, #ec5e10, #1d2671);
+            background-size: 600% 600%;
+            -webkit-animation: AnimationName 17s ease infinite;
+            -moz-animation: AnimationName 17s ease infinite;
+            animation: AnimationName 17s ease infinite;
+        }
+        
+        @-webkit-keyframes AnimationName {
+            0% {
+                background-position: 0% 42%
+            }
+            50% {
+                background-position: 100% 59%
+            }
+            100% {
+                background-position: 0% 42%
+            }
+        }
+        
+        @-moz-keyframes AnimationName {
+            0% {
+                background-position: 0% 42%
+            }
+            50% {
+                background-position: 100% 59%
+            }
+            100% {
+                background-position: 0% 42%
+            }
+        }
+        
+        @keyframes AnimationName {
+            0% {
+                background-position: 0% 42%
+            }
+            50% {
+                background-position: 100% 59%
+            }
+            100% {
+                background-position: 0% 42%
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-pic js-tilt" data-tilt>
+                    <img src="login/images/img-01.png" alt="IMG">
+
+                </div>
+
+                <form class="login100-form validate-form">
+                    <span class="login100-form-title">
+						<img src="login/images/logo.png" style="width: 70%;">
+						<h4 style="margin-top: 5%;">Emloyee</h4>
+					</span>
+
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        <input class="input100" type="text" name="email" id="loginEmail" placeholder="Email">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                        <input class="input100" type="password" name="pass" id="loginPassword" placeholder="Password">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" id="doLogin">
+							Login
+						</button>
+                    </div>
+
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--===============================================================================================-->
+    <script src="login/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="login/vendor/bootstrap/js/popper.js"></script>
+    <script src="login/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="login/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="login/vendor/tilt/tilt.jquery.min.js"></script>
+    <script>
+        $('.js-tilt').tilt({
+            scale: 1.1
+        })
+    </script>
+    <!--===============================================================================================-->
+    <script src="login/js/main.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <!-- Contacts Store JavaScript -->
+
+    <script src="file/index.js"></script>
+</body>
+
+
+</html>

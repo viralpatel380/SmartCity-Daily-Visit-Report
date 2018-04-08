@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Yo Connect!</title>
+    <script type="text/javascript" src="instascan.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDWTFbwQa6ucCrlgQNV-NJALahbRjQ5H0k",
+            authDomain: "fir-bad72.firebaseapp.com",
+            databaseURL: "https://fir-bad72.firebaseio.com",
+            projectId: "fir-bad72",
+            storageBucket: "fir-bad72.appspot.com",
+            messagingSenderId: "714065987518"
+        };
+        firebase.initializeApp(config);
+
+
+        // ...
+    </script>
+    <style>
+        body {
+            width: 100wh;
+            color: #fff;
+            background: linear-gradient(-45deg, #f38181, #fce38a);
+            background-size: 400% 400%;
+            -webkit-animation: Gradient 15s ease infinite;
+            -moz-animation: Gradient 15s ease infinite;
+            animation: Gradient 15s ease infinite;
+        }
+        
+        @-webkit-keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+        
+        @-moz-keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+        
+        @keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+        
+        .card {
+            border-radius: 5px;
+        }
+        
+        @font-face {
+            font-family: myFirstFont;
+            src: url(./css/tondo-bold-webfont.ttf);
+        }
+        
+        * {
+            font-family: myFirstFont;
+        }
+        
+        .card {
+            margin: 1%;
+            text-align: center;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        
+        h4 {
+            color: #050100;
+            background-image: -webkit-linear-gradient(92deg, #094f94, red);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-animation: hue 30s infinite linear;
+        }
+        
+        @keyframes hue {
+            from {
+                filter: hue-rotate(0deg);
+            }
+            to {
+                filter: hue-rotate(-360deg);
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar is-transparent">
+        <div class="navbar-brand">
+            <a class="navbar-logo" href="home.html">
+                <img src="image/logo.png" alt="Yo Connect" style="width: 120px">
+            </a>
+            <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <div id="navbarExampleTransparentExample" class="navbar-menu">
+            <div class="navbar-start">
+
+            </div>
+
+            <div class="navbar-end">
+                <a class="navbar-item active" href="home.html">
+                    Home
+                  </a>
+                <a class="navbar-item" href="ana.html">
+                    Analytics
+                  </a>
+                <a class="navbar-item" href="emp.html">
+                    Employee
+                  </a>
+                <a class="navbar-item" href="dealer.html">
+                    Dealer
+                  </a>
+                <a class="navbar-item" href="ana.html">
+                    Retail
+                  </a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link" href="">
+                      Vehical
+                    </a>
+                    <div class="navbar-dropdown is-boxed">
+                        <a class="navbar-item" href=" ">
+                        Add Vehical
+                      </a>
+                        <a class="navbar-item" href="vehical.html">
+                        Manage Vehical
+                      </a>
+
+                    </div>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link" href="">
+                          New Product
+                        </a>
+                    <div class="navbar-dropdown is-boxed">
+                        <a class="navbar-item" href="manageNewProduct.html">
+                            Manage New Product
+                          </a>
+                        <a class="navbar-item" href="viewNewProduct.html">
+                            View New Product
+                          </a>
+
+                    </div>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link" href="">
+                          Offer
+                        </a>
+                    <div class="navbar-dropdown is-boxed">
+                        <a class="navbar-item" href="manageOffer.html">
+                            Manage Offer
+                          </a>
+                        <a class="navbar-item" href="viewOffer.html">
+                            View Offer
+                          </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-mobile ">
+                    <div class="column">
+
+                        <div class="card">
+                            <div class="card-content">
+                                <h2>Mark Attendance</h2>
+                                <video id="preview" alt="Mountains"></video>
+                                <h4 id="demo" style="text-align: center"></h4>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </section>
+
+    <script type="text/javascript">
+    firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    
+
+    console.log("User ID " + user.uid + " is logged in with " + user.email);
+    var uu = user.uid;
+    console.log(user.email);
+        let scanner = new Instascan.Scanner({
+            video: document.getElementById('preview'),
+            mirror: false,
+            scanPeriod: 1
+        });
+
+        var content;
+        console.log(content);
+        scanner.addListener('scan', function(content) {
+
+            var obj = JSON.parse(content);
+
+            var random = firebase.database().ref('randomNumberForAttendance');
+            random.on('value', function(no) {
+                r = no.val();
+                console.log(obj.number);
+                console.log("R :" + r);
+    var attKey = firebase.database().ref().child('users/salesPersonNode/' + uu + '/att/' ).push().key;
+  var data = firebase.database().ref().child('users/salesPersonNode/' + uu + '/att/' )
+  data.on('value', function(data){
+      vvv= data.val();
+      
+  })
+    console.log(attKey)
+            });
+            document.getElementById("demo").innerHTML = "Attendance Marked ! Press Back Button";
+
+
+        });
+
+        Instascan.Camera.getCameras().then(function(cameras) {
+            if (cameras.length > 0) {
+                scanner.start(cameras[0]);
+            } else {
+                console.error('No cameras found.');
+            }
+        }).catch(function(e) {
+            console.error(e);
+        });
+    } else {
+    // No user is signed in.
+    window.alert("Please Sign In Sales WebApp");
+  }
+});
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Get all "navbar-burger " elements
+            var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+            // Check if there are any nav burgers
+            if ($navbarBurgers.length > 0) {
+
+                // Add a click event on each of them
+                $navbarBurgers.forEach(function($el) {
+                    $el.addEventListener('click', function() {
+
+                        // Get the target from the "data-target " attribute
+                        var target = $el.dataset.target;
+                        var $target = document.getElementById(target);
+                        // Toggle the class on both the "navbar-burger " and the "navbar-menu "
+                        $el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
+
+                    });
+                });
+            }
+
+        });
+    </script>
+   
+
+
+</body>
+
+</html>

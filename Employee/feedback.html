@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>feedback</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        @font-face {
+            font-family: myFirstFont;
+            src: url(./css/tondo-bold-webfont.ttf);
+        }
+        
+        * {
+            font-family: myFirstFont;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                <a href="home.html">
+                    <img alt="Brand" src="image/logo.png" style=" width: 100px;margin-top:6%;">
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="atten.html">Attendance</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+
+                    <li><a href="viewNewProduct.html">View Incentive</a></li>
+                    <li><a href="viewOffer.html">View Notice</a></li>
+                    <button class="btn btn-danger navbar-btn" id="sign-out">Logout</button>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+
+    <div class="container" id="home">
+        <div class="row">
+            <div class="post">
+                <div class="panel panel-default">
+                    <div class="panel panel-heading">
+                        <h1 style="color: #00b4f0;margin-left: 2%;">Feedback</h1>
+
+                    </div>
+
+                    <div class="panel-body">
+
+                        <form id="form-convalidaciones">
+                            <div class="form-row">
+
+                                <div class="form-group col-md-4 mb-3">
+                                    <label for="inputName" class="control-label">topic:</label>
+                                    <input type="text" class="form-control" id="topic" placeholder="topic" required>
+                                </div>
+                                <div class="form-group col-md-4 mb-3">
+                                    <label for="inputName" class="control-label">message:</label>
+                                    <input type="text" class="form-control" placeholder="Enter message" id="message">
+                                </div><br>
+
+                                <div class="form-group col-md-4 mb-3">
+
+                                    <input id="boton-enviar-convalidacion" class="btn btn-primary" type="submit" value="Submit">
+                                </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- jQuery library -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+            <!-- Latest compiled JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+
+            <script>
+                function begin() {
+                    // Initialize Firebase
+                    var config = {
+                        apiKey: "AIzaSyALWbrnwEjAcoSkrUa-hiPtfgyDZdJwcS4",
+                        authDomain: "smartcity-dvr.firebaseapp.com",
+                        databaseURL: "https://smartcity-dvr.firebaseio.com",
+                        projectId: "smartcity-dvr",
+                        storageBucket: "smartcity-dvr.appspot.com",
+                        messagingSenderId: "817397451184"
+                    };
+
+                    firebase.initializeApp(config);
+
+                    var refConvalidaciones = firebase.database().ref().child('Feedback');
+
+                    var $formConvalidaciones = $('#form-convalidaciones');
+                    var $tbodyTablaConvalidaciones = $('#tbody-tabla-convalidaciones');
+                    var $topic = $('#topic');
+                    var $message = $('#message');
+
+                    var $botonSubmit = $('#boton-enviar-convalidacion');
+
+                    var CREATE = 'Submit';
+                    var UPDATE = 'Update';
+                    var modo = CREATE;
+                    var refConvalidacionEditar;
+
+                    $formConvalidaciones.on('submit', createEditConvalidacion);
+                    $tbodyTablaConvalidaciones.on('click', action);
+
+                    mostrarConvalidaciones();
+
+                    function mostrarConvalidaciones() {
+                        refConvalidaciones.on('value', function(snapshot) {
+                            var datos = snapshot.val();
+                            var filasAMostrar = '';
+
+                            for (var key in datos) {
+                                filasAMostrar += '<tr>' +
+                                    '<td>' +
+
+
+                                    '<td>' + datos[key].topic + '</td>' +
+                                    '<td>' + datos[key].message + '</td>' +
+
+                                    '</td>' +
+                                    '</tr>';
+                            }
+                            $tbodyTablaConvalidaciones.html(filasAMostrar);
+                        });
+                    }
+
+                    function action(event) {
+                        if (event.target.parentElement.messageName === 'BUTTON') {
+                            if ($(event.target.parentElement).hasClass('borrar')) {
+                                borrarConvalidacion($(event.target.parentElement).data('convalidacion'));
+                            } else if ($(event.target.parentElement).hasClass('editar')) {
+                                editarConvalidacion($(event.target.parentElement).data('convalidacion'));
+                            }
+                        }
+                    }
+
+                    function borrarConvalidacion(strKey) {
+                        if (confirm('Are You Sure?')) {
+                            refConvalidaciones.child(strKey).remove();
+                        }
+                    }
+
+
+                    function editarConvalidacion(strKey) {
+                        refConvalidacionEditar = refConvalidaciones.child(strKey);
+
+                        refConvalidacionEditar.once('value', function(snapshot) {
+                            var data = snapshot.val();
+
+                            $topic.val(data.topic);
+                            $message.val(data.message);
+
+                        });
+
+                        $botonSubmit.val(UPDATE);
+                        modo = UPDATE;
+                    }
+
+                    function createEditConvalidacion(event) {
+                        event.preventDefault();
+
+                        switch (true) {
+                            case (modo === CREATE):
+                                refConvalidaciones.push({
+
+                                    topic: event.target.topic.value,
+                                    message: event.target.message.value,
+
+                                });
+                                break;
+                            case (modo === UPDATE):
+                                refConvalidacionEditar.update({
+
+                                    topic: event.target.topic.value,
+                                    message: event.target.message.value,
+
+                                });
+
+                                $botonSubmit.val(CREATE);
+                                modo = CREATE;
+                                break;
+                        }
+                        $formConvalidaciones[0].reset();
+                    }
+                };
+
+                $(document).ready(begin);
+            </script>
+
+</body>
+<script>
+    document.querySelector('#sign-out').addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        firebase.auth().signOut().then(function() {
+            console.log("sign-out successfully!");
+            window.location = "index.html";
+            // Sign-out successful.
+        }).catch(function(error) {
+            // An error happened.
+            console.log("sign-out error!!!!!!!!!!");
+        });
+    });
+</script>
+
+</html>
+<!-- searching js file-->
+
+<script>
+    $(document).ready(function() {
+        $('#search').keyup(function() {
+            search_table($(this).val());
+        });
+
+        function search_table(value) {
+            $('#employee_table tr').each(function() {
+                var found = 'false';
+                $(this).each(function() {
+                    if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+                        found = 'true';
+                    }
+                });
+                if (found == 'true') {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        }
+    });
+</script>
