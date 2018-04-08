@@ -1,0 +1,313 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Dealer</title>
+
+    <script type="text/javascript" src="file/jquery.min.js"></script>
+    <script type="text/javascript" src="file/qrcode.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyALWbrnwEjAcoSkrUa-hiPtfgyDZdJwcS4",
+            authDomain: "smartcity-dvr.firebaseapp.com",
+            databaseURL: "https://smartcity-dvr.firebaseio.com",
+            projectId: "smartcity-dvr",
+            storageBucket: "smartcity-dvr.appspot.com",
+            messagingSenderId: "817397451184"
+        };
+
+        // ...
+    </script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <style>
+        body {
+            width: 100wh;
+            color: #fff;
+            background: linear-gradient(-90deg, #17ead9, #455ac2);
+            background-size: 400% 400%;
+            -webkit-animation: Gradient 15s ease infinite;
+            -moz-animation: Gradient 15s ease infinite;
+            animation: Gradient 15s ease infinite;
+        }
+        
+        @-webkit-keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+        
+        @-moz-keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+        
+        @keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+        
+        .card {
+            border-radius: 10px;
+            margin: 0%;
+            text-align: center;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        
+        @font-face {
+            font-family: myFirstFont;
+            src: url(./css/tondo-bold-webfont.ttf);
+        }
+        
+        * {
+            font-family: myFirstFont;
+        }
+        
+        h4 {
+            color: #050100;
+            background-image: -webkit-linear-gradient(92deg, #094f94, red);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-animation: hue 30s infinite linear;
+        }
+        
+        @keyframes hue {
+            from {
+                filter: hue-rotate(0deg);
+            }
+            to {
+                filter: hue-rotate(-360deg);
+            }
+        }
+        
+        .navbar-burger {
+            color: black;
+        }
+    </style>
+
+
+</head>
+
+<!-- main part-->
+
+<body>
+    <nav class="navbar is-transparent">
+        <div class="navbar-brand">
+            <a class="navbar-logo" href="home.html">
+                <img src="image/logo.png" alt="Yo Connect" style="width: 120px">
+            </a>
+            <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <div id="navbarExampleTransparentExample" class="navbar-menu">
+            <div class="navbar-start">
+
+            </div>
+
+            <div class="navbar-end">
+                <a class="navbar-item active" href="home.html">
+                            Home
+                          </a>
+                <a class="navbar-item" href="qr.html">
+                         AttendanceQR
+                          </a>
+                <a class="navbar-item" href="viewNewProduct.html">
+                        Incentives
+                          </a>
+                <a class="navbar-item" href="viewOffer.html">
+                            Notice
+                          </a>
+                <a class="navbar-item" href="feedback.html">
+                            Feedback
+                          </a>
+                <a class="button is-danger" id="sign-out">
+                            sign Out
+                          </a>
+
+            </div>
+        </div>
+    </nav>
+    <div id="map"></div>
+    <section class="hero" style="margin: auto;">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-mobile ">
+                    <div class="column">
+                        <div class="card" style="width: 300px;height: 350;margin: auto;">
+                            <div class="card-content">
+                                <div id="qrcode" style="width:250px;height: 300px;">
+                                    <h4 id="demo" hidden/></h4>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer style="margin-top: 40%;">
+            <div class="container">
+                <div class="content has-text-centered">
+                    <p>2018 © Panctual Sarkar</p>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+
+    <script>
+        firebase.initializeApp(config);
+
+        // make another code.
+
+
+
+        var qrcode = new QRCode("qrcode", {
+            // text: 'http://jindo.dev.naver.com/collie',
+            width: 300,
+            height: 300,
+            colorDark: 'black',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        var x = document.getElementById("demo");
+
+        function getLocation() {
+
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        getLocation();
+
+
+
+        function showPosition(position) {
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    console.log(user.uid);
+
+                    x.innerHTML = "Latitude: " + position.coords.latitude +
+                        "<br>Longitude: " + position.coords.longitude;
+                    var v = position.coords.latitude;
+                    //   var x = String(v);
+                    var vv = position.coords.longitude;
+
+
+                    var userId = user.uid;
+                    var commentsRef = firebase.database().ref('users/host/' + userId);
+                    var l;
+                    var ll;
+                    var r;
+                    commentsRef.on('value', function(data) {
+                        var random = firebase.database().ref('randomNumberForAttendance');
+                        random.on('value', function(no) {
+                            r = no.val();
+                            l = data.val().adhar;
+                            ll = data.val().name;
+                            lll = data.val().pincode;
+                            console.log(v, vv, l, ll, r);
+                            myObj = {
+                                gpsX: v,
+                                gpsY: vv,
+                                adhar: l,
+                                name: ll,
+                                pincode: lll,
+                                number: r
+                            };
+                            // console.log(myObj);
+                            myJSON = JSON.stringify(myObj);
+                            console.log(myJSON);
+                            qrcode.makeCode(myJSON);
+                        });
+                    });
+                    //  var y = String(vv);
+                }
+            });
+
+
+        }
+    </script>
+
+</body>
+<script>
+    document.querySelector('#sign-out').addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        firebase.auth().signOut().then(function() {
+            console.log("sign-out successfully!");
+            window.location = "index.html";
+            // Sign-out successful.
+        }).catch(function(error) {
+            // An error happened.
+            console.log("sign-out error!!!!!!!!!!");
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // Get all "navbar-burger " elements
+        var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+        // Check if there are any nav burgers
+        if ($navbarBurgers.length > 0) {
+
+            // Add a click event on each of them
+            $navbarBurgers.forEach(function($el) {
+                $el.addEventListener('click', function() {
+
+                    // Get the target from the "data-target " attribute
+                    var target = $el.dataset.target;
+                    var $target = document.getElementById(target);
+                    // Toggle the class on both the "navbar-burger " and the "navbar-menu "
+                    $el.classList.toggle('is-active');
+                    $target.classList.toggle('is-active');
+
+                });
+            });
+        }
+
+    });
+</script>
+
+</html>
