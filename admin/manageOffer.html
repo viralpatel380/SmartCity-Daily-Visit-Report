@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Upload Notice</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="file/overrides.css">
+    <style>
+        @font-face {
+            font-family: myFirstFont;
+            src: url(./css/tondo-bold-webfont.ttf);
+        }
+        
+        * {
+            font-family: myFirstFont;
+        }
+        
+        body {
+            width: 100wh;
+            background: linear-gradient(-45deg, #f8b195, #f67280, #c06c84, #6c5b7b, #355c7d);
+            background-size: 400% 400%;
+            -webkit-animation: Gradient 20s ease infinite;
+            -moz-animation: Gradient 20s ease infinite;
+            animation: Gradient 20s ease infinite;
+        }
+        
+        @-webkit-keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+        
+        @-moz-keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+        
+        @keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                <a href="home.html">
+                    <img alt="Brand" src="image/logo.png" style=" width: 100px;margin-top:6%;">
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="ana.html">Analytics</a></li>
+                    <li><a href="emp.html">Employee</a></li>
+                    <li><a href="host.html">Host</a></li>
+
+                    <li><a href="dvrHome.html">DVR</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Incentive <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="manageNewProduct.html">Manage Incentive</a></li>
+                            <li><a href="viewNewProduct.html">View Incentive</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notice <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="active"><a href="manageOffer.html">Manage Notice</a></li>
+                            <li><a href="viewOffer.html ">View Notice</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="feedback.html">Feedback</a></li>
+
+                    <button class="btn btn-danger navbar-btn" id="sign-out">signOut</button>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+
+    <div class="container" id="login">
+        <div class="row">
+            <div class="post">
+                <div class="panel panel-default">
+                    <div class="panel panel-heading">
+                        <h1 style="color: #00b4f0;margin-left: 2%;">Add Notice</h1>
+
+                    </div>
+                    <div class="panel-body">
+
+                        <form id="form-convalidaciones">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputName" class="control-label">Notice Titel:</label>
+                                    <input type="text" class="form-control" id="title" placeholder="Enter Offer Title" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputName" class="control-label">Message:</label>
+                                    <input type="text" class="form-control" id="message" placeholder="Enter Message" required>
+                                </div>
+
+
+                                <label class="btn btn-primary">
+                            Select File
+                            <input type="file"  class="upload-group" id="file">
+                          </label>
+
+                                <button type="button" class="btn btn-primary" id="uploadButton" onclick="uploadFile()">SUBMIT</button>
+                            </div>
+
+
+                        </form>
+                    </div>
+                    <div class="post">
+                        <div class="panel panel-default">
+
+                            <h2 style="color: #00b4f0;margin-left: 2%;">Notice List</h2>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-sm-13">
+                                <div class="form-group col-md-6">
+                                    <label for="inputName" class="control-label">Search:</label>
+                                    <input class="form-control mr-sm-2" type="search" name="search" id="search" placeholder="Search">
+                                </div>
+
+                                <div class="table-responsive" style=" width: 100%;height: 450px; overflow: scroll;">
+                                    <table class="table table-striped" id="employee_table">
+                                        <tr>
+
+                                            <th></th>
+                                            <th></th>
+
+                                            <th>Notice Title</th>
+                                            <th>message</th>
+
+
+                                        </tr>
+                                        </thead>
+                                        <tbody id="tbody-tabla-convalidaciones"></tbody>
+                                    </table>
+                                </div>
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-4">
+
+                                </div>
+                            </div>
+
+                            <!-- jQuery library -->
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+                            <!-- Latest compiled JavaScript -->
+                            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                            <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+                            <script>
+                                function begin() {
+                                    // Initialize Firebase
+                                    var config = {
+                                        apiKey: "AIzaSyALWbrnwEjAcoSkrUa-hiPtfgyDZdJwcS4",
+                                        authDomain: "smartcity-dvr.firebaseapp.com",
+                                        databaseURL: "https://smartcity-dvr.firebaseio.com",
+                                        projectId: "smartcity-dvr",
+                                        storageBucket: "smartcity-dvr.appspot.com",
+                                        messagingSenderId: "817397451184"
+                                    };
+
+                                    firebase.initializeApp(config);
+
+                                    var refConvalidaciones = firebase.database().ref().child('OffersNode');
+
+                                    var $formConvalidaciones = $('#form-convalidaciones');
+                                    var $tbodyTablaConvalidaciones = $('#tbody-tabla-convalidaciones');
+                                    var $title = $('#title');
+                                    var $message = $('#message');
+
+
+                                    var CREATE = 'Submit';
+                                    var UPDATE = 'Update';
+                                    var modo = CREATE;
+                                    var refConvalidacionEditar;
+
+                                    $formConvalidaciones.on('submit', createEditConvalidacion);
+                                    $tbodyTablaConvalidaciones.on('click', action);
+
+                                    mostrarConvalidaciones();
+
+                                    function mostrarConvalidaciones() {
+                                        refConvalidaciones.on('value', function(snapshot) {
+                                            var datos = snapshot.val();
+                                            var filasAMostrar = '';
+
+                                            for (var key in datos) {
+                                                filasAMostrar += '<tr>' +
+
+                                                    '<td>' +
+                                                    '<button data-convalidacion="' + key + '" class="btn btn-danger borrar">' +
+                                                    '<span class="glyphicon glyphicon-trash"></span>' +
+                                                    '</button>' +
+                                                    '<td></td>' +
+
+                                                    '<td>' + datos[key].title + '</td>' +
+                                                    '<td>' + datos[key].message + '</td>' +
+                                                    '</td>' +
+                                                    '</tr>';
+                                            }
+                                            $tbodyTablaConvalidaciones.html(filasAMostrar);
+                                        });
+                                    }
+
+                                    function action(event) {
+                                        if (event.target.parentElement.tagName === 'BUTTON') {
+                                            if ($(event.target.parentElement).hasClass('borrar')) {
+                                                borrarConvalidacion($(event.target.parentElement).data('convalidacion'));
+                                            } else if ($(event.target.parentElement).hasClass('editar')) {
+                                                editarConvalidacion($(event.target.parentElement).data('convalidacion'));
+                                            }
+                                        }
+                                    }
+
+                                    function borrarConvalidacion(strKey) {
+                                        if (confirm('Are You Sure?')) {
+                                            refConvalidaciones.child(strKey).remove();
+                                        }
+                                    }
+
+
+                                    function createEditConvalidacion(event) {
+                                        event.preventDefault();
+
+                                        switch (true) {
+                                            case (modo === CREATE):
+                                                refConvalidaciones.push({
+                                                    title: event.target.title.value,
+                                                    message: event.target.message.value,
+                                                });
+                                                break;
+                                            case (modo === UPDATE):
+                                                refConvalidacionEditar.update({
+                                                    title: event.target.title.value,
+                                                    message: event.target.message.value,
+                                                });
+
+                                                $botonSubmit.val(CREATE);
+                                                modo = CREATE;
+                                                break;
+                                        }
+                                        $formConvalidaciones[0].reset();
+                                    }
+                                };
+
+                                $(document).ready(begin);
+                            </script>
+
+                            <script src="https://apis.google.com/js/platform.js" async defer></script>
+                            <!-- Bootstrap core JavaScript
+  ================================================== -->
+                            <!-- Placed at the end of the document so the pages load faster -->
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+                            <script>
+                                window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+                            </script>
+                            <!-- Latest compiled and minified JavaScript -->
+                            <script type="text/javascript" src="file\manageOffer.js"></script>
+
+
+                            <script src="./auth/index.js"></script>
+
+</body>
+<script>
+    document.querySelector('#sign-out').addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        firebase.auth().signOut().then(function() {
+            console.log("sign-out successfully!");
+            window.location = "index.html";
+            // Sign-out successful.
+        }).catch(function(error) {
+            // An error happened.
+            console.log("sign-out error!!!!!!!!!!");
+        });
+    });
+</script>
+
+</html>
+
+<script>
+    $(document).ready(function() {
+        $('#search').keyup(function() {
+            search_table($(this).val());
+        });
+
+        function search_table(value) {
+            $('#employee_table tr').each(function() {
+                var found = 'false';
+                $(this).each(function() {
+                    if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+                        found = 'true';
+                    }
+                });
+                if (found == 'true') {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        }
+    });
+</script>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> insentives</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        @font-face {
+            font-family: myFirstFont;
+            src: url(./css/tondo-bold-webfont.ttf);
+        }
+        
+        * {
+            font-family: myFirstFont;
+        }
+        
+        .img-thumbnail {
+            max-height: 350px;
+            max-width: 350px;
+        }
+        
+        h5 {
+            color: grey;
+        }
+        
+        body {
+            width: 100wh;
+            background: linear-gradient(-45deg, #f8b195, #f67280, #c06c84, #6c5b7b, #355c7d);
+            background-size: 400% 400%;
+            -webkit-animation: Gradient 20s ease infinite;
+            -moz-animation: Gradient 20s ease infinite;
+            animation: Gradient 20s ease infinite;
+        }
+        
+        @-webkit-keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+        
+        @-moz-keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+        
+        @keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                <a href="home.html">
+                    <img alt="Brand" src="image/logo.png" style=" width: 100px;margin-top:6%;">
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="ana.html">Analytics</a></li>
+                    <li><a href="emp.html">Employee</a></li>
+                    <li><a href="dealer.html">Dealer</a></li>
+
+                    <li><a href="dvrHome.html">DVR</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Incentive <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="manageNewProduct.html">Manage Incentive</a></li>
+                            <li class="active"><a href="viewNewProduct.html">View Incentives</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notice <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="manageOffer.html">Manage Notice</a></li>
+                            <li><a href="viewOffer.html">View Notice</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="feedback.html">Feedback</a></li>
+
+                    <button class="btn btn-danger navbar-btn" id="sign-out">signOut</button>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="post">
+                <div class="panel panel-default">
+                    <div class="panel panel-heading">
+                        <h1 style="color: #00b4f0;margin-left: 2%;">List Incentive</h1>
+
+                    </div>
+                    <div class="row">
+                        <div class="container" id="contentHolder" style="max-width:80%;  max-height:90%; ">
+                        </div>
+
+
+                        <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+                        <script>
+                            // Initialize Firebase
+                            var config = {
+                                apiKey: "AIzaSyALWbrnwEjAcoSkrUa-hiPtfgyDZdJwcS4",
+                                authDomain: "smartcity-dvr.firebaseapp.com",
+                                databaseURL: "https://smartcity-dvr.firebaseio.com",
+                                projectId: "smartcity-dvr",
+                                storageBucket: "smartcity-dvr.appspot.com",
+                                messagingSenderId: "817397451184"
+                            };
+                            firebase.initializeApp(config);
+                        </script>
+                        <script src="https://apis.google.com/js/platform.js" async defer></script>
+                        <!-- Bootstrap core JavaScript
+  ================================================== -->
+                        <!-- Placed at the end of the document so the pages load faster -->
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+                        <script>
+                            window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+                        </script>
+                        <!-- Latest compiled and minified JavaScript -->
+                        <script type="text/javascript" src="file/viewNewProduct.js"></script>
+
+
+                        <!-- jQuery library -->
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+                        <!-- Latest compiled JavaScript -->
+                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+</body>
+<script>
+    document.querySelector('#sign-out').addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        firebase.auth().signOut().then(function() {
+            console.log("sign-out successfully!");
+            window.location = "index.html";
+            // Sign-out successful.
+        }).catch(function(error) {
+            // An error happened.
+            console.log("sign-out error!!!!!!!!!!");
+        });
+    });
+</script>
+
+</html>

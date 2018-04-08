@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Employee</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <style>
+        @font-face {
+            font-family: myFirstFont;
+            src: url(./css/tondo-bold-webfont.ttf);
+        }
+        
+        * {
+            font-family: myFirstFont;
+        }
+        
+        body {
+            width: 100wh;
+            background: linear-gradient(-45deg, #f8b195, #f67280, #c06c84, #6c5b7b, #355c7d);
+            background-size: 400% 400%;
+            -webkit-animation: Gradient 20s ease infinite;
+            -moz-animation: Gradient 20s ease infinite;
+            animation: Gradient 20s ease infinite;
+        }
+        
+        @-webkit-keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+        
+        @-moz-keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+        
+        @keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <nav class="navbar navbar-default" style="background-color: white;">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                              <span class="sr-only">Toggle navigation</span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                            </button>
+                <a href="home.html">
+                    <img alt="Brand" src="image/logo.png" style=" width: 100px;margin-top:6%;">
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="ana.html">Analytics</a></li>
+                    <li class="active"><a href="emp.html">Employee</a></li>
+                    <li><a href="host.html">Host</a></li>
+                    <li><a href="dvrHome.html">DVR</a></li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Incentive <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="manageNewProduct.html">Manage Incentive</a></li>
+                            <li><a href="viewNewProduct.html">View Incentive</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notice</a> <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="manageOffer.html">Manage Notice</a></li>
+                            <li><a href="viewOffer.html">View Notice</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="feedback.html">Feedback</a></li>
+
+
+                    <li>
+                        <button class="btn btn-danger navbar-btn" id="sign-out">signOut</button>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+
+
+    <div class="container" id="home">
+        <div class="row">
+            <div class="post">
+                <div class="panel panel-default">
+                    <div class="panel panel-heading">
+                        <h1 style="color: #00b4f0;margin-left: 2%;">Add Employee</h1>
+
+                    </div>
+
+                    <div class="panel-body">
+
+                        <form id="form-convalidaciones">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputName" class="control-label">Employee Id:</label>
+                                    <input type="text" class="form-control" id="empId" placeholder="000000" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputName" class="control-label">Name:</label>
+                                    <input type="text" class="form-control" id="name" placeholder="XYZ" required>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <label for="inputName" class="control-label">Birth Date:</label>
+                                    <input type="date" class="form-control" id="dateOfBirth" placeholder="DD/MM/YY">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="inputState">Designation</label>
+                                    <select id="designation" class="form-control">
+                                  <option selected>Inspector</option>
+                                  <option>Sweeper</option>
+                                </select>
+                                </div>
+                                <div class="form-group col-md-4 mb-3">
+                                    <label for="inputName" class="control-label">Work Location:</label>
+                                    <input type="text" class="form-control" placeholder="City" id="workLocation" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputState">Gender</label>
+                                    <select id="gender" class="form-control">
+                              <option selected>Male</option>
+                              <option>Female</option>
+                            </select>
+                                </div>
+                                <div class="form-group col-md-8">
+                                    <label for="inputName" class="control-label">Address:</label>
+                                    <input type="text" class="form-control" placeholder="56,abc app,surat" id="address" required>
+                                </div>
+                                <div class="form-group col-md-4 mb-3">
+                                    <label for="inputEmail" class="control-label">Email:</label>
+                                    <input type="email" class="form-control" placeholder="abc@gmail.com" id="email" data-error="Bruh, that email address is invalid" required>
+                                </div>
+
+                                <div class="form-group col-md-4 mb-3">
+                                    <label for="inputName" class="control-label"> Mobile Number:</label>
+                                    <input type="text" class="form-control" pattern="[789][0-9]{9}" placeholder="000 111 1234" id="currentMobile" required>
+                                </div>
+                                <div class="form-group col-md-4 mb-3">
+                                    <label for="inputName" class="control-label"> Adhar Number:</label>
+                                    <input type="text" class="form-control" placeholder="000 111 1234 1234" id="adhar" required>
+                                </div>
+
+
+                                <div class="form-group col-md-4 mb-3">
+                                    <label for="inputState">Divison Type</label>
+                                    <select id="divisionType" class="form-control">
+                              <option selected>select</option>
+                              <option>Police</option>
+                              <option>Cleanning</option>
+                            
+                            </select>
+                                </div>
+
+
+                                <div class="form-group  col-md-4 mb-3">
+                                    <label for="inputName" class="control-label">Location:</label>
+                                    <input type="text" class="form-control" placeholder="City" id="citiesAssigned">
+                                </div>
+
+                                <div class="form-group  col-md-4 mb-3">
+                                    <label for="inputName" class="control-label">Time:</label>
+                                    <input type="time" class="form-control" placeholder="time" id="time">
+                                </div>
+                                <div class="form-group col-md-8">
+                                    <label for="message-text" class="control-label">Password:</label>
+                                    <input type="text" class="form-control" value="emp@1234" id="registerPassword" disabled/></div>
+                                <div class="form-group" hidden/>
+                                <label for="message-text" class="control-label">Confirm Password:</label>
+                                <input type="password" class="form-control" value="emp@1234" id="registerConfirmPassword" disabled/>
+                            </div><br>
+                            <div class="form-group col-md-6 mb-3">
+
+                                <input id="boton-enviar-convalidacion" class="btn btn-primary" type="submit" value="Submit">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="panel panel-default">
+
+                        <h2 style="color: #00b4f0;margin-left: 2%;">Employee List</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-sm-13">
+                            <div class="form-group col-md-6">
+                                <label for="inputName" class="control-label">Search:</label>
+                                <input class="form-control mr-sm-2" type="search" name="search" id="search" placeholder="Search">
+                            </div>
+                            <div class="table-responsive" style=" width: 100%;height: 450px; overflow: scroll;">
+                                <table class="table table-striped" id="employee_table">
+
+                                    <tr>
+
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th>EmpId</th>
+                                        <th>Name</th>
+                                        <th>Birthdate</th>
+                                        <th>Designation</th>
+                                        <th>Work Location</th>
+                                        <th>Gender</th>
+                                        <th>Email</th>
+                                        <th>Current Mobile</th>
+                                        <th>Adhar Number</th>
+                                        <th> Address</th>
+                                        <th>Division Type</th>
+                                        <th>Cities Assigned</th>
+                                        <th>Time</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tbody-tabla-convalidaciones"></tbody>
+                                </table>
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-4">
+
+                            </div>
+                        </div>
+
+                        <!-- jQuery library -->
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+                        <!-- Latest compiled JavaScript -->
+                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                        <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+                        <script>
+                            function begin() {
+                                // Initialize Firebase
+                                var config = {
+                                    apiKey: "AIzaSyALWbrnwEjAcoSkrUa-hiPtfgyDZdJwcS4",
+                                    authDomain: "smartcity-dvr.firebaseapp.com",
+                                    databaseURL: "https://smartcity-dvr.firebaseio.com",
+                                    projectId: "smartcity-dvr",
+                                    storageBucket: "smartcity-dvr.appspot.com",
+                                    messagingSenderId: "817397451184"
+                                };
+                                firebase.initializeApp(config);
+
+                                var refConvalidaciones = firebase.database().ref().child('users/employee');
+
+                                var Auth = firebase.auth();
+                                var dbRef = firebase.database();
+                                var contactsRef = dbRef.ref('users/employee');
+                                var usersRef = dbRef.ref('users/employee');
+                                var auth = null;
+
+
+                                var $formConvalidaciones = $('#form-convalidaciones');
+                                var $tbodyTablaConvalidaciones = $('#tbody-tabla-convalidaciones');
+                                var $empId = $('#empId');
+                                var $name = $('#name');
+                                var $dateOfBirth = $('#dateOfBirth');
+                                var $designation = $('#designation');
+                                var $workLocation = $('#workLocation');
+                                var $gender = $('#gender');
+                                var $email = $('#email');
+                                var $currentMobile = $('#currentMobile');
+                                var $adhar = $('#adhar');
+                                var $address = $('#address');
+                                var $divisionType = $('#divisionType');
+
+                                var $citiesAssigned = $('#citiesAssigned');
+                                var $time = $('#time');
+                                var $botonSubmit = $('#boton-enviar-convalidacion');
+
+                                var CREATE = 'Submit';
+                                var UPDATE = 'Update';
+                                var modo = CREATE;
+                                var refConvalidacionEditar;
+
+                                $formConvalidaciones.on('submit', createEditConvalidacion);
+                                $tbodyTablaConvalidaciones.on('click', action);
+
+                                mostrarConvalidaciones();
+
+                                function mostrarConvalidaciones() {
+                                    refConvalidaciones.on('value', function(snapshot) {
+                                        var datos = snapshot.val();
+                                        var filasAMostrar = '';
+
+                                        for (var key in datos) {
+                                            filasAMostrar += '<tr>' +
+                                                '<td>' +
+                                                '<a href="#home">' +
+                                                '<button data-convalidacion="' + key + '" class="btn btn-primary editar"  >' +
+                                                '<span class="glyphicon glyphicon-edit"></span>' +
+                                                '</button>' +
+                                                '</a>' +
+                                                '</td>' +
+                                                '<td>' +
+                                                '<button data-convalidacion="' + key + '" class="btn btn-danger borrar">' +
+                                                '<span class="glyphicon glyphicon-trash"></span>' +
+                                                '</button>' +
+                                                '<td></td>' +
+
+                                                '<td>' + datos[key].empId + '</td>' +
+                                                '<td>' + datos[key].name + '</td>' +
+                                                '<td>' + datos[key].dateOfBirth + '</td>' +
+                                                '<td>' + datos[key].designation + '</td>' +
+                                                '<td>' + datos[key].workLocation + '</td>' +
+                                                '<td>' + datos[key].gender + '</td>' +
+                                                '<td>' + datos[key].email + '</td>' +
+                                                '<td>' + datos[key].currentMobile + '</td>' +
+                                                '<td>' + datos[key].adhar + '</td>' +
+                                                '<td>' + datos[key].address + '</td>' +
+                                                '<td>' + datos[key].divisionType + '</td>' +
+
+                                                '<td>' + datos[key].citiesAssigned + '</td>' +
+                                                '<td>' + datos[key].time + '</td>' +
+
+                                                '</td>' +
+                                                '</tr>';
+                                        }
+                                        $tbodyTablaConvalidaciones.html(filasAMostrar);
+                                    });
+                                }
+
+                                function action(event) {
+                                    if (event.target.parentElement.tagName === 'BUTTON') {
+                                        if ($(event.target.parentElement).hasClass('borrar')) {
+                                            borrarConvalidacion($(event.target.parentElement).data('convalidacion'));
+                                        } else if ($(event.target.parentElement).hasClass('editar')) {
+                                            editarConvalidacion($(event.target.parentElement).data('convalidacion'));
+                                        }
+                                    }
+                                }
+
+                                function borrarConvalidacion(strKey) {
+                                    if (confirm('Are You Sure?')) {
+                                        refConvalidaciones.child(strKey).remove();
+                                    }
+                                }
+
+                                function editarConvalidacion(strKey) {
+                                    refConvalidacionEditar = refConvalidaciones.child(strKey);
+
+                                    refConvalidacionEditar.once('value', function(snapshot) {
+                                        var data = snapshot.val();
+                                        $empId.val(data.empId);
+                                        $name.val(data.name);
+                                        $dateOfBirth.val(data.dateOfBirth);
+                                        $designation.val(data.designation);
+                                        $workLocation.val(data.workLocation);
+                                        $gender.val(data.gender);
+                                        $email.val(data.email);
+                                        $currentMobile.val(data.currentMobile);
+                                        $adhar.val(data.adhar);
+                                        $address.val(data.address);
+                                        $divisionType.val(data.divisionType);
+
+                                        $citiesAssigned.val(data.citiesAssigned);
+                                        $time.val(data.time);
+                                    });
+
+                                    $botonSubmit.val(UPDATE);
+                                    modo = UPDATE;
+                                }
+
+                                function createEditConvalidacion(event) {
+                                    event.preventDefault();
+
+                                    switch (true) {
+                                        case (modo === CREATE):
+
+                                            var data = {
+                                                empId: $('#empId').val(), //get the email from Form
+                                                name: $('#name').val(), // get firstName
+                                                dateOfBirth: $('#dateOfBirth').val(),
+                                                designation: $('#designation').val(),
+                                                workLocation: $('#workLocation').val(), // get lastName
+                                                gender: $('#gender').val(),
+                                                email: $('#email').val(),
+                                                currentMobile: $('#currentMobile').val(),
+                                                adhar: $('#adhar').val(),
+                                                address: $('#address').val(),
+                                                divisionType: $('#divisionType').val(),
+
+                                                citiesAssigned: $('#citiesAssigned').val(),
+                                                time: $('#time').val(),
+
+                                            };
+                                            var passwords = {
+                                                password: $('#registerPassword').val(), //get the pass from Form
+                                                cPassword: $('#registerConfirmPassword').val(), //get the confirmPass from Form
+                                            }
+                                            if (data.email != '' && passwords.password != '' && passwords.cPassword != '') {
+                                                if (passwords.password == passwords.cPassword) {
+                                                    //create the user
+
+                                                    firebase.auth()
+                                                        .createUserWithEmailAndPassword(data.email, passwords.password)
+                                                        .then(function(user) {
+                                                            //now user is needed to be logged in to save data
+                                                            alert("Authenticated successfully with payload:", user.email);
+                                                            auth = user;
+                                                            //now saving the profile data 
+                                                            usersRef
+                                                                .child(user.uid)
+                                                                .set(data)
+                                                                .then(function() {
+                                                                    console.log("User Information Saved:", user.uid);
+                                                                })
+                                                                //hide the modal automatically
+
+                                                        })
+                                                        .catch(function(error) {
+                                                            alert("Error creating user:", error);
+                                                        });
+                                                } else {
+                                                    //password and confirm password didn't match
+
+                                                }
+                                            };
+
+
+
+
+
+                                            break;
+                                        case (modo === UPDATE):
+                                            refConvalidacionEditar.update({
+                                                empId: event.target.empId.value,
+                                                name: event.target.name.value,
+                                                dateOfBirth: event.target.dateOfBirth.value,
+                                                designation: event.target.designation.value,
+                                                workLocation: event.target.workLocation.value,
+                                                gender: event.target.gender.value,
+                                                email: event.target.email.value,
+                                                currentMobile: event.target.currentMobile.value,
+                                                adhar: event.target.adhar.value,
+                                                address: event.target.address.value,
+                                                divisionType: event.target.divisionType.value,
+
+                                                citiesAssigned: event.target.citiesAssigned.value,
+                                                time: event.target.time.value
+                                            });
+
+                                            $botonSubmit.val(CREATE);
+                                            modo = CREATE;
+                                            break;
+                                    }
+                                    $formConvalidaciones[0].reset();
+                                }
+                            };
+
+                            $(document).ready(begin);
+                        </script>
+
+
+</body>
+<script>
+    document.querySelector('#sign-out').addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        firebase.auth().signOut().then(function() {
+            console.log("sign-out successfully!");
+            window.location = "index.html";
+            // Sign-out successful.
+        }).catch(function(error) {
+            // An error happened.
+            console.log("sign-out error!!!!!!!!!!");
+        });
+    });
+</script>
+
+</html>
+
+<!--search data-->
+
+<script>
+    $(document).ready(function() {
+        $('#search').keyup(function() {
+            search_table($(this).val());
+        });
+
+        function search_table(value) {
+            $('#employee_table tr').each(function() {
+                var found = 'false';
+                $(this).each(function() {
+                    if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+                        found = 'true';
+                    }
+                });
+                if (found == 'true') {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        }
+    });
+</script>

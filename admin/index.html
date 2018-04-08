@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>PS</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        @font-face {
+            font-family: myFirstFont;
+            src: url(./css/tondo-regular-webfont.ttf);
+        }
+        
+        * {
+            font-family: myFirstFont;
+        }
+        
+        body {
+            width: 100wh;
+            color: black;
+            background: linear-gradient(-45deg, #f8b195, #f67280, #c06c84, #6c5b7b, #355c7d);
+            background-size: 400% 400%;
+            -webkit-animation: Gradient 15s ease infinite;
+            -moz-animation: Gradient 15s ease infinite;
+            animation: Gradient 15s ease infinite;
+        }
+        
+        @-webkit-keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+        
+        @-moz-keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+        
+        @keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+        
+        .container {
+            margin-top: 5%;
+        }
+        
+        .card {
+            background-color: lightgrey;
+            margin-left: 5%;
+            margin-top: 10%;
+        }
+        
+        img {
+            width: 50%;
+            margin-left: 25%;
+        }
+    </style>
+
+    <!-- Material Design Bootstrap -->
+
+    <!-- Your custom styles (optional) -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyALWbrnwEjAcoSkrUa-hiPtfgyDZdJwcS4",
+            authDomain: "smartcity-dvr.firebaseapp.com",
+            databaseURL: "https://smartcity-dvr.firebaseio.com",
+            projectId: "smartcity-dvr",
+            storageBucket: "smartcity-dvr.appspot.com",
+            messagingSenderId: "817397451184"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script>
+        dbref = firebase.database();
+
+        function login() {
+
+            var email = $('#form2').val();
+            //var password = $('#form4').val();
+            firebase.database().ref('users/adminNode').orderByChild('divisionType').equalTo('admin')
+                .on('value', function(snap) {
+                    var childData
+                    snap.forEach(function(childSnapshot) {
+                        var childKey = childSnapshot.key;
+                        var childData = childSnapshot.val().email;
+                        // console.log(childData);
+                        if (email == childData) {
+                            v();
+                        } else {
+                            // console.log("DDDD");
+                            // window.alert("You are not Admin !");
+                        }
+                    });
+
+
+                });
+        }
+
+        function v() {
+
+            var email = $('#form2').val();
+            var password = $('#form4').val();
+
+            firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
+                var user = firebase.auth().currentUser;
+                if (user) {
+                    location.href = "home.html"
+                } else {
+                    window.alert("Email or Password that you've entered is incorrect !")
+                    alert("login failed!!");
+                }
+
+            }, function(error) {
+
+                alert(error.message);
+            });
+
+        }
+    </script>
+
+</head>
+
+<body class="fixed-sn white-skin">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-5 login-form mx-auto float-none">
+
+                <!--Form with header-->
+                <img src="image/logo2.png">
+                <div class="card">
+                    <div class="card-block">
+
+
+                        <br>
+                        <!--Body-->
+                        <div class="md-form">
+                            <i class="fa fa-envelope prefix"><label for="form2">&nbsp Email</label></i>
+                            <input type="text" id="form2" class="form-control" placeholder="Enter your email id">
+
+                        </div>
+                        <br>
+                        <div class="md-form">
+                            <i class="fa fa-lock prefix"><label for="form4">&nbsp Password</label></i>
+                            <input type="password" id="form4" class="form-control" placeholder="Enter Password">
+
+                        </div>
+                        <br>
+                        <div class="text-center">
+                            <button class="btn btn-primary " onclick="login()">Login</button>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--/Form with header-->
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
