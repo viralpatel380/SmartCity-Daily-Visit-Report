@@ -1,0 +1,96 @@
+body {
+    width: 100wh;
+    color: black;
+    background: linear-gradient(-45deg, #f38181, #fce38a);
+    background-size: 400% 400%;
+    -webkit-animation: Gradient 15s ease infinite;
+    -moz-animation: Gradient 15s ease infinite;
+    animation: Gradient 15s ease infinite;
+}
+
+@-webkit-keyframes Gradient {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@-moz-keyframes Gradient {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@keyframes Gradient {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+#userList {
+    margin: 0;
+    padding: 0;
+    width: 250px;
+    float: left;
+    margin: 10px;
+    border: 1px solid #4fc3fc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+    color: black;
+}
+
+@font-face {
+    font-family: myFirstFont;
+    src: url(./css/tondo-bold-webfont.ttf);
+}
+
+* {
+    font-family: myFirstFont;
+}
+
+#userList h2 {
+    padding: 10px;
+    margin: 0;
+}
+
+#userList li {
+    padding: 5px 10px;
+    border-top: 1px solid #4fc3fc;
+    border-radius: 5px;
+    cursor: pointer;
+    font-style: italic;
+}
+
+#userList menu:hover {
+    background: #4fc3fc;
+}
+
+#userDetail {
+    float: left;
+    margin: 10px;
+    margin-left: 0;
+    padding: 10px;
+    border: 1px solid #4fc3fc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color: black;
+    background-color: white;
+}
